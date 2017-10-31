@@ -9,6 +9,12 @@ app.get('/', (req, res) =>{
     res.send('INDEX');
 });
 
+// About Route
+app.get('/about', (req, res) =>{
+    res.send('ABOUT');
+
+});
+
 
 // server port to listen on
 const port = 5000;
