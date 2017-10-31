@@ -1,18 +1,26 @@
 // require express & brings it in
 const express = require('express');
+
+// require express handlebars
+const exphbs  = require('express-handlebars');
+
 // created app variable to express funtion to initialize the app
 const app = express();
+
+// handlebars middleware from docs https://github.com/ericf/express-handlebars
+// using handlebars as default templating and setting default layout to main
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 //index route  using request and response object callback function
 app.get('/', (req, res) =>{
 // send is a method attatched to res
-    res.send('INDEX');
+    res.render('index');
 });
 
 // About Route
 app.get('/about', (req, res) =>{
     res.send('ABOUT');
-
 });
 
 
