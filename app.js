@@ -15,12 +15,18 @@ app.set('view engine', 'handlebars');
 //index route  using request and response object callback function
 app.get('/', (req, res) =>{
 // send is a method attatched to res
-    res.render('index');
+    const title = 'Welcome to Unpolished Diamond!';
+    //object title passes to variable title
+    res.render('index',{
+        title: title
+
+    });
 });
 
 // About Route
 app.get('/about', (req, res) =>{
-    res.send('ABOUT');
+    // rendering to about.handlebars
+    res.render('about');
 });
 
 
