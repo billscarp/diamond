@@ -4,9 +4,21 @@ const express = require('express');
 // require express handlebars
 const exphbs  = require('express-handlebars');
 
+    // require mongoose
+const mongoose = require('mongoose');
+
 // created app variable to express funtion to initialize the app
 const app = express();
 
+// map global promise - remove warning
+mongoose.Promise = global.Promise;
+// connect database to mongoose
+mongoose.connect('mongodb://localhost/projects-dev', {
+   useMongoClient: true
+})
+//promise
+.then(() => console.log('MongoDB Connected...'))
+.catch(err => console.log(err));
 // handlebars middleware from docs https://github.com/ericf/express-handlebars
 // using handlebars as default templating and setting default layout to main
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -16,7 +28,7 @@ app.set('view engine', 'handlebars');
 app.get('/', (req, res) =>{
 // send is a method attatched to res
     const title = 'Welcome to Unpolished Diamond!';
-    //object title passes to variable title
+    //object title passes to variable title goes to index.handlebars
     res.render('index',{
         title: title
 
