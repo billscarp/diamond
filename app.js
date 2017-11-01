@@ -60,12 +60,20 @@
         res.render('about');
     });
 
-    // project form route
+    // project form routes
 
     app.get('/projects/add', (req, res) => {
         // rendering to about.handlebars
         res.render('projects/add');
     });
+
+    // process the form
+
+    app.post('/projects', (req, res) => {
+        res.send('ok');
+    });
+
+
 
 
 
