@@ -7,6 +7,9 @@
     // require express handlebars
     const exphbs = require('express-handlebars');
 
+    // require body-parser
+    const bodyParser = require('body-parser');
+
     // require mongoose
     const mongoose = require('mongoose');
 
