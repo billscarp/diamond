@@ -44,6 +44,15 @@
     app.set('view engine', 'handlebars');
 
 
+    ///// BODY-PARSER MIDDLEWARE //////
+// parse application/x-www-form-urlencoded
+// allows access to request.body
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+
     //////  ROUTES   //////
 
     //index route  using request and response object callback function
@@ -63,7 +72,7 @@
         res.render('about');
     });
 
-    // project form routes
+    // project form routes / project add
 
     app.get('/projects/add', (req, res) => {
         // rendering to about.handlebars
@@ -73,6 +82,7 @@
     // process the form
 
     app.post('/projects', (req, res) => {
+        console.log(req.body)
         res.send('ok');
     });
 
