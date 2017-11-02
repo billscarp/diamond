@@ -74,6 +74,17 @@
         res.render('about');
     });
 
+    // Project Index Page
+    app.get('/projects', (req, res) => {
+        Project.find({})
+          .sort({date:'desc'})
+          .then(projects => {
+            res.render('projects/index', {
+              projects:projects
+            });
+          });
+      });
+
     // project form routes / project add
 
     app.get('/projects/add', (req, res) => {
