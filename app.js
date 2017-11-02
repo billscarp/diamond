@@ -97,6 +97,8 @@ app.use(bodyParser.json())
             details: req.body.details
 
         });
+    } else {
+        res.send('passed');
     }
     });
 
