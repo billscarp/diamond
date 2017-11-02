@@ -94,6 +94,10 @@
         // rendering to about.handlebars
         res.render('projects/add');
     });
+    // edit project form
+    app.get('/projects/edit/:id', (req, res) => {
+        res.render('projects/edit');
+    });
 
     // process the form
 
