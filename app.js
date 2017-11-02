@@ -45,12 +45,14 @@
 
 
     ///// BODY-PARSER MIDDLEWARE //////
-// parse application/x-www-form-urlencoded
-// allows access to request.body
-app.use(bodyParser.urlencoded({ extended: false }))
+    // parse application/x-www-form-urlencoded
+    // allows access to request.body
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }))
 
-// parse application/json
-app.use(bodyParser.json())
+    // parse application/json
+    app.use(bodyParser.json())
 
 
     //////  ROUTES   //////
@@ -82,24 +84,31 @@ app.use(bodyParser.json())
     // process the form
 
     app.post('/projects', (req, res) => {
-      let errors = [];
 
-      if(!req.body.title){
-          errors.push({text:'Please add a title'});
-      }
-      if(!req.body.details){
-      errors.push({text:'Please add some details'});
-    }
-    if(errors.length > 0){
-        res.render('projects/add', {
-            errors: errors,
-            title: req.body.title,
-            details: req.body.details
+        // form server side validation
+        let errors = [];
 
-        });
-    } else {
-        res.send('passed');
-    }
+
+        if (!req.body.title) {
+            errors.push({
+                text: 'Please add a title'
+            });
+        }
+        if (!req.body.details) {
+            errors.push({
+                text: 'Please add some details'
+            });
+        }
+        if (errors.length > 0) {
+            res.render('projects/add', {
+                errors: errors,
+                title: req.body.title,
+                details: req.body.details
+
+            });
+        } else {
+            res.send('passed');
+        }
     });
 
     //////  SERVER ///////
