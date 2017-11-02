@@ -82,8 +82,22 @@ app.use(bodyParser.json())
     // process the form
 
     app.post('/projects', (req, res) => {
-        console.log(req.body)
-        res.send('ok');
+      let errors = [];
+
+      if(!req.body.title){
+          errors.push({text:'Please add a title'});
+      }
+      if(!req.body.details){
+      errors.push({text:'Please add some details'});
+    }
+    if(errors.length > 0){
+        res.render('projects/add', {
+            errors: errors,
+            title: req.body.title,
+            details: req.body.details
+
+        });
+    }
     });
 
     //////  SERVER ///////
