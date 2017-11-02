@@ -96,8 +96,17 @@
     });
     // edit project form
     app.get('/projects/edit/:id', (req, res) => {
-        res.render('projects/edit');
-    });
+        // this finds one item by id
+        Project.findOne({
+            _id: req.params.id
+        })
+            .then(project => {
+                res.render('projects/edit', {
+                   project:project 
+                });
+            });
+        });
+
 
     // process the form
 
