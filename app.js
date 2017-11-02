@@ -152,7 +152,7 @@
     });
 
     // edit form process so changes can be made
-    app.put('projects/:id', (req, res) => {
+    app.put('/projects/:id', (req, res) => {
         res.send('PUT');
     });
 

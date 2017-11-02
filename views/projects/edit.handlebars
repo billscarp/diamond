@@ -4,7 +4,9 @@
 
 <div class="card card-body">
     <h3>Edit Project</h3>
-    <form action="/projects  " method="post">
+    {{!-- using query from method-override docs --}}
+    <form action="/projects/{{project.id}}?_method=PUT" method="post">
+    <input type="hidden" name="_method" value="PUT">
 
         <div class="form-group">
             <label for="title">Title</label>
