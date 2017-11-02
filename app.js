@@ -7,6 +7,9 @@
     // require express handlebars
     const exphbs = require('express-handlebars');
 
+    // this package allows you to use puts without doing an ajax request
+    const methodOverride = require('method-override')
+
     // require body-parser
     const bodyParser = require('body-parser');
 
@@ -53,6 +56,10 @@
 
     // parse application/json
     app.use(bodyParser.json())
+
+    ////// METHOD-OVERRIDE MIDDLEWARE //////
+    // override with POST having ?_method=DELETE
+    app.use(methodOverride('_method'));
 
 
     //////  ROUTES   //////
@@ -144,7 +151,10 @@
         }
     });
 
-
+    // edit form process so changes can be made
+    app.put('projects/:id', (req, res) => {
+        res.send('PUT');
+    });
 
     //////  SERVER ///////
 
