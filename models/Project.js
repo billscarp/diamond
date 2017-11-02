@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Creat Schema;
+// Create Schema
 const ProjectSchema = new Schema({
-    title:{
-        type:String,
-        required: true
-    },
-    catagory:{
-        type: String,
-        required: true
-    },
+  title:{
+    type: String,
+    required: true
+  },
+  details:{
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-    data: {
-        type: Date,
-        defualt: Date.now
-    }
-})
-
-mongoose.model('project', ProjectSchema);
+mongoose.model('projects', ProjectSchema);

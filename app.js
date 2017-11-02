@@ -18,10 +18,10 @@
 
     //////  MONGOOSE //////
 
-    // map global promise - remove warning
+    // map global promise - remove warning / using promises rather than callbacks
     mongoose.Promise = global.Promise;
     // connect database to mongoose
-    mongoose.connect('mongodb://localhost/projects-dev', {
+    mongoose.connect('mongodb://localhost/project-dev', {
             useMongoClient: true
         })
         //promise
@@ -30,7 +30,7 @@
 
     // load Project model
     require('./models/Project');
-    const Project = mongoose.model('project');
+    const Project = mongoose.model('projects');
 
 
 
@@ -81,35 +81,39 @@
         res.render('projects/add');
     });
 
-    // process the form
+// process the form
 
     app.post('/projects', (req, res) => {
-
-        // form server side validation
+        // res.send('ok');
+        // console.log(req.body)
         let errors = [];
-
-
-        if (!req.body.title) {
-            errors.push({
-                text: 'Please add a title'
-            });
+      
+        if(!req.body.title){
+          errors.push({text:'Please add a title'});
         }
-        if (!req.body.details) {
-            errors.push({
-                text: 'Please add some details'
-            });
+        if(!req.body.details){
+          errors.push({text:'Please add some details'});
         }
-        if (errors.length > 0) {
-            res.render('projects/add', {
-                errors: errors,
-                title: req.body.title,
-                details: req.body.details
-
-            });
+        if(errors.length > 0){
+          res.render('projects/add', {
+            errors: errors,
+            title: req.body.title,
+            details: req.body.details
+          });
         } else {
-            res.send('passed');
+          const newUser = {
+            title: req.body.title,
+            details: req.body.details
+          }
+          new Project(newUser)
+            .save()
+            .then(project => {
+              res.redirect('/projects');
+            })
         }
-    });
+      });
+
+  
 
     //////  SERVER ///////
 
