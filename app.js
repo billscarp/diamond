@@ -74,16 +74,19 @@
         res.render('about');
     });
 
-    // Project Index Page
+    // Project Index Page / taking ideas from database and passing into render
     app.get('/projects', (req, res) => {
         Project.find({})
-          .sort({date:'desc'})
-          .then(projects => {
-            res.render('projects/index', {
-              projects:projects
+            // promise & sort
+            .sort({
+                date: 'desc'
+            })
+            .then(projects => {
+                res.render('projects/index', {
+                    projects: projects
+                });
             });
-          });
-      });
+    });
 
     // project form routes / project add
 
@@ -92,39 +95,43 @@
         res.render('projects/add');
     });
 
-// process the form
+    // process the form
 
     app.post('/projects', (req, res) => {
         // res.send('ok');
         // console.log(req.body)
         let errors = [];
-      
-        if(!req.body.title){
-          errors.push({text:'Please add a title'});
-        }
-        if(!req.body.details){
-          errors.push({text:'Please add some details'});
-        }
-        if(errors.length > 0){
-          res.render('projects/add', {
-            errors: errors,
-            title: req.body.title,
-            details: req.body.details
-          });
-        } else {
-          const newUser = {
-            title: req.body.title,
-            details: req.body.details
-          }
-          new Project(newUser)
-            .save()
-            .then(project => {
-              res.redirect('/projects');
-            })
-        }
-      });
 
-  
+        if (!req.body.title) {
+            errors.push({
+                text: 'Please add a title'
+            });
+        }
+        if (!req.body.details) {
+            errors.push({
+                text: 'Please add some details'
+            });
+        }
+        if (errors.length > 0) {
+            res.render('projects/add', {
+                errors: errors,
+                title: req.body.title,
+                details: req.body.details
+            });
+        } else {
+            const newUser = {
+                title: req.body.title,
+                details: req.body.details
+            }
+            new Project(newUser)
+                .save()
+                .then(project => {
+                    res.redirect('/projects');
+                })
+        }
+    });
+
+
 
     //////  SERVER ///////
 

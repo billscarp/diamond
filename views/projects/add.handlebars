@@ -1,9 +1,6 @@
-{{!-- handlebars loop --}} {{!-- looping through to find errors will let user know if there are any --}} 
-{{#each errors}}
-  <div class="alert alert-danger">{{text}}</div>
-{{else}}
-
-{{/each}}
+{{!-- handlebars loop --}} {{!-- looping through to find errors will let user know if there are any --}} {{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}} {{/each}}
 
 <div class="card card-body">
     <h3>Project Submit</h3>
@@ -14,11 +11,11 @@
             <input type="text" class="form-control" name="title" required>
         </div>
 
-       <div class="form-group">
-      <label for="details">Details</label>
-      <textarea class="form-control" name="details" required></textarea>
-    </div>
+        <div class="form-group">
+            <label for="details">Details</label>
+            <textarea class="form-control" name="details" required></textarea>
         </div>
-    <button type="Submit" class="btn btn-primary">Submit</button>
-    </form>
+</div>
+<button type="Submit" class="btn btn-primary">Submit</button>
+</form>
 </div>

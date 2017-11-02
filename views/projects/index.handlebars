@@ -1,8 +1,8 @@
-{{#each projects}}
-  <div class="card card-body mb-2">
+{{!-- loop through projects because they are being returned as an array --}} {{#each projects}}
+<div class="card card-body mb-2">
     <h4>{{title}}</h4>
     <p>{{details}}</p>
-  </div>
-{{else}}
-  <p>No projects listed</p>
+</div>
+{{!-- what to say if there are no projects entered --}} {{else}}
+<p>No projects listed</p>
 {{/each}}
