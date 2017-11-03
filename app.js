@@ -172,6 +172,7 @@
             new Project(newUser)
                 .save()
                 .then(project => {
+                    req.flash('success_msg', 'Project Added');
                     res.redirect('/projects');
                 })
         }
@@ -189,6 +190,7 @@
 
                 project.save()
                     .then(project => {
+                        req.flash('success_msg', 'Project Updated');
                         res.redirect('/projects');
                     })
             })
