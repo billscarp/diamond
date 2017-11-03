@@ -8,7 +8,13 @@
     const exphbs = require('express-handlebars');
 
     // this package allows you to use puts without doing an ajax request
-    const methodOverride = require('method-override')
+    const methodOverride = require('method-override');
+
+    // connect-flash
+    const flash = require('connect-flash');
+
+    // express-session
+    const session = require('express-session');
 
     // require body-parser
     const bodyParser = require('body-parser');
