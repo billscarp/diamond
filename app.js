@@ -25,6 +25,8 @@
     // created app variable to express funtion to initialize the app
     const app = express();
 
+    app.use(express.static('public'));  
+
     //////  MONGOOSE //////
 
     // map global promise - remove warning / using promises rather than callbacks
@@ -204,7 +206,17 @@
             res.redirect('/projects');
           });
       });
+      /////// PASSPORT  ////////
 
+        //user login route
+      app.get('/users/login', (req, res) => {
+        res.send('login');
+      });
+
+      // user register route
+      app.get('/users/register', (req, res) => {
+        res.send('register');
+      });
 
     //////  SERVER ///////
 
