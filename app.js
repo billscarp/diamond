@@ -105,14 +105,14 @@
     app.get('/projects/edit/:id', (req, res) => {
         // this finds one item by id
         Project.findOne({
-            _id: req.params.id
-        })
+                _id: req.params.id
+            })
             .then(project => {
                 res.render('projects/edit', {
-                   project:project 
+                    project: project
                 });
             });
-        });
+    });
 
 
     // process the form
@@ -154,19 +154,25 @@
     // edit form process so changes can be made
     app.put('/projects/:id', (req, res) => {
         Project.findOne({
-            _id: req.params.id
-        })
+                _id: req.params.id
+            })
             .then(project => {
                 //new values
                 project.title = req.body.title;
                 project.details = req.body.details;
 
                 project.save()
-                .then(project => {
-                    res.redirect('/projects');
-                })
+                    .then(project => {
+                        res.redirect('/projects');
+                    })
             })
     });
+
+    // delete project
+    app.delete('/projects/:id', (req, res)=> {
+        res.send('DELETE');
+    });
+
 
     //////  SERVER ///////
 

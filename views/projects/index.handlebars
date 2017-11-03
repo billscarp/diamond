@@ -3,9 +3,12 @@
     <h4>{{title}}</h4>
     <p>{{details}}</p>
     <a class="btn btn-dark btn-block mb-2" href="/projects/edit/{{id}}">Edit</a>
-    <form method="post" action="/projects/{{id}}?_method="DELETE">
+{{!--    
+   delete button form --}}
+    <form method="post" action="/projects/
+    {{id}}?_method=DELETE">
      <input type="hidden" name="_method" value="DELETE">
-     <input type="submit" class="btn btn-danger btn-block" value="Delete"
+     <input type="submit" class="btn btn-danger btn-block" value="Delete">
     </form>
 </div>
 {{!-- what to say if there are no projects entered --}} {{else}}
