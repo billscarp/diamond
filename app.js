@@ -25,6 +25,9 @@
     // created app variable to express funtion to initialize the app
     const app = express();
 
+    // load routes
+    const projects = require('./routes/projects');
+
     app.use(express.static('public'));  
 
     //////  MONGOOSE //////
@@ -39,9 +42,7 @@
         .then(() => console.log('MongoDB Connected...'))
         .catch(err => console.log(err));
 
-    // load Project model
-    require('./models/Project');
-    const Project = mongoose.model('projects');
+   
 
 
 
@@ -109,103 +110,7 @@
         res.render('about');
     });
 
-    // Project Index Page / taking ideas from database and passing into render
-    app.get('/projects', (req, res) => {
-        Project.find({})
-            // promise & sort
-            .sort({
-                date: 'desc'
-            })
-            .then(projects => {
-                res.render('projects/index', {
-                    projects: projects
-                });
-            });
-    });
-
-    // project form routes / project add
-
-    app.get('/projects/add', (req, res) => {
-        // rendering to about.handlebars
-        res.render('projects/add');
-    });
-    // edit project form
-    app.get('/projects/edit/:id', (req, res) => {
-        // this finds one item by id
-        Project.findOne({
-                _id: req.params.id
-            })
-            .then(project => {
-                res.render('projects/edit', {
-                    project: project
-                });
-            });
-    });
-
-
-    // process the form
-
-    app.post('/projects', (req, res) => {
-        // res.send('ok');
-        // console.log(req.body)
-        let errors = [];
-
-        if (!req.body.title) {
-            errors.push({
-                text: 'Please add a title'
-            });
-        }
-        if (!req.body.details) {
-            errors.push({
-                text: 'Please add some details'
-            });
-        }
-        if (errors.length > 0) {
-            res.render('projects/add', {
-                errors: errors,
-                title: req.body.title,
-                details: req.body.details
-            });
-        } else {
-            const newUser = {
-                title: req.body.title,
-                details: req.body.details
-            }
-            new Project(newUser)
-                .save()
-                .then(project => {
-                    req.flash('success_msg', 'Project Added');
-                    res.redirect('/projects');
-                })
-        }
-    });
-
-    // edit form process so changes can be made
-    app.put('/projects/:id', (req, res) => {
-        Project.findOne({
-                _id: req.params.id
-            })
-            .then(project => {
-                //new values
-                project.title = req.body.title;
-                project.details = req.body.details;
-
-                project.save()
-                    .then(project => {
-                        req.flash('success_msg', 'Project Updated');
-                        res.redirect('/projects');
-                    })
-            })
-    });
-
-    // delete project
-    app.delete('/projects/:id', (req, res) => {
-        Project.remove({_id: req.params.id})
-          .then(() => {
-              req.flash('success_msg', 'Project removed');
-            res.redirect('/projects');
-          });
-      });
+    
       /////// PASSPORT  ////////
 
         //user login route
@@ -218,6 +123,8 @@
         res.send('register');
       });
 
+      // use routes uses projects.js users.js
+      app.use('/projects', projects);
     //////  SERVER ///////
 
     // server port to listen on
