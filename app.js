@@ -68,6 +68,14 @@
     app.use(methodOverride('_method'));
 
 
+    //////  EXPRESS-SESSION MIDDLEWARE //////
+
+    app.use(session({
+        secret: 'secret',
+        resave: true,
+        saveUninitialized: true
+      }))
+
     //////  ROUTES   //////
 
     //index route  using request and response object callback function
