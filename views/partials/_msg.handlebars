@@ -1,0 +1,13 @@
+{{!-- Check for success message --}}
+
+{{#if success_msg}}
+
+{{!-- comes from gloabl variable on app.js --}}
+  <div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+
+{{!-- Check for success message --}}
+
+{{#if error_msg}}
+  <div class="alert alert-danger">{{error_msg}}</div>
+{{/if}}
