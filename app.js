@@ -78,15 +78,15 @@
 
       ////  FLASH ////
       //calling flash
-   app.use(flash());   
+      app.use(flash());  
 
    // global variables
-app.use(function(req, res, next){
+   app.use(function(req, res, next){
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     next();
-});
+  });
 
     //////  ROUTES   //////
 
@@ -198,6 +198,7 @@ app.use(function(req, res, next){
     app.delete('/projects/:id', (req, res) => {
         Project.remove({_id: req.params.id})
           .then(() => {
+              req.flash('success_msg', 'Project removed');
             res.redirect('/projects');
           });
       });
