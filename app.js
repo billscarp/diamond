@@ -28,6 +28,8 @@
     // load routes
     const projects = require('./routes/projects');
 
+    const users = require('./routes/users');
+
     app.use(express.static('public'));  
 
     //////  MONGOOSE //////
@@ -113,18 +115,11 @@
     
       /////// PASSPORT  ////////
 
-        //user login route
-      app.get('/users/login', (req, res) => {
-        res.send('login');
-      });
-
-      // user register route
-      app.get('/users/register', (req, res) => {
-        res.send('register');
-      });
+      
 
       // use routes uses projects.js users.js
       app.use('/projects', projects);
+      app.use('/users', users);
     //////  SERVER ///////
 
     // server port to listen on
