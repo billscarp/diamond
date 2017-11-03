@@ -169,9 +169,12 @@
     });
 
     // delete project
-    app.delete('/projects/:id', (req, res)=> {
-        res.send('DELETE');
-    });
+    app.delete('/projects/:id', (req, res) => {
+        Project.remove({_id: req.params.id})
+          .then(() => {
+            res.redirect('/projects');
+          });
+      });
 
 
     //////  SERVER ///////
