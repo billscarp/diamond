@@ -153,7 +153,19 @@
 
     // edit form process so changes can be made
     app.put('/projects/:id', (req, res) => {
-        res.send('PUT');
+        Project.findOne({
+            _id: req.params.id
+        })
+            .then(project => {
+                //new values
+                project.title = req.body.title;
+                project.details = req.body.details;
+
+                project.save()
+                .then(project => {
+                    res.redirect('/projects');
+                })
+            })
     });
 
     //////  SERVER ///////
