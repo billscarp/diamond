@@ -4,6 +4,8 @@
     // require express & brings it in
     const express = require('express');
 
+    const path = require('path');
+
     // require express handlebars
     const exphbs = require('express-handlebars');
 
@@ -30,7 +32,7 @@
 
     const users = require('./routes/users');
 
-    app.use(express.static('public'));  
+    app.use(express.static(path.join(__dirname, 'public')));  
 
     //////  MONGOOSE //////
 
@@ -67,6 +69,8 @@
 
     // parse application/json
     app.use(bodyParser.json())
+
+
 
     ////// METHOD-OVERRIDE MIDDLEWARE //////
     // override with POST having ?_method=DELETE
