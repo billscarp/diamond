@@ -4,6 +4,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport')
 const router = express.Router();
 
+  // load the user model
+  require('../models/User');
+  const User = mongoose.model('users');
+
   //user login route
   router.get('/login', (req, res) => {
     res.render('users/login');
@@ -35,15 +39,27 @@ const router = express.Router();
         password2: req.body.password2
       });
     } else {
-    const newUser = {
-      name:req.body.name,
-      email:req.body.email,
-      password:req.body.password
-    }
-    console.log(newUser);
-    res.send('passed');
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      });
+      
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if(err) throw err;
+          newUser.password = hash;
+          newUser.save()
+            .then(user => {
+              req.flash('succes_msg', 'You are now registered and can log in');
+              res.redirect('/users/login');
+            })
+            .catch(err => {
+              console.log(err);
+              return;
+            });
+        });
+      });
     }
   });
-  
-
 module.exports = router;
