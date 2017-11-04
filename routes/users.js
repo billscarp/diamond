@@ -13,28 +13,28 @@ const router = express.Router();
   });
 
   // catch the register form
-router.post('/register', (req, res) => {
-  let.error = [];
-
-  if (req.body.password != req.body.password2){
-    errors.push({text: 'Passowrds do not match'});
-  }
-  if(req.body.password.length < 6){
-    errors.push({text: 'Passowrd must be at leave 6 characters'})
-  }
-  // passes in errors, name email and password.  If wrong, user won't need to re enter everything.
-  if(errors.length > 0){
-    res.render('users/register', {
-      errors: errors,
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-      password2: req.body.password2
-
-    });
-  } else {
-    res.send('passed');
-  }
-});
+  router.post('/register', (req, res) => {
+    let errors = [];
+  
+    if(req.body.password != req.body.password2){
+      errors.push({text:'Passwords do not match'});
+    }
+  
+    if(req.body.password.length < 6){
+      errors.push({text:'Password must be at least 6 characters'});
+    }
+  
+    if(errors.length > 0){
+      res.render('users/register', {
+        errors: errors,
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        password2: req.body.password2
+      });
+    } else {
+      res.send('passed');
+    }
+  });
 
 module.exports = router;

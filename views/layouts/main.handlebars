@@ -18,6 +18,9 @@
 
         {{!-- messages --}}
             {{> _msg}}
+
+            {{!-- loops through errors coming from partial errors.handlebars --}}
+            {{>_errors}}
         {{!-- Outputs the view that is being loaded --}} {{{body}}}
     </div>
     {{!-- // bootstrap javascript files --}}
