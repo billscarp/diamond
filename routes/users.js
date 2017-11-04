@@ -18,6 +18,17 @@ const router = express.Router();
     res.render('users/register');
   });
 
+  // loging form POST
+  router.post('/login', (req, res, next) =>{
+    passport.authenticate('local', {
+      successRedirect:'/projects',
+      falureRedirect: '/users/login',
+      falureFlash: true
+    })(req, res, next);
+  });
+
+
+
   // catch the register form
   router.post('/register', (req, res) => {
     let errors = [];
