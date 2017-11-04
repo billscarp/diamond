@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const passport = require('passport')
 const router = express.Router();
 
   //user login route
@@ -33,8 +35,15 @@ const router = express.Router();
         password2: req.body.password2
       });
     } else {
-      res.send('passed');
+    const newUser = {
+      name:req.body.name,
+      email:req.body.email,
+      password:req.body.password
+    }
+    console.log(newUser);
+    res.send('passed');
     }
   });
+  
 
 module.exports = router;
