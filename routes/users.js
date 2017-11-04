@@ -39,7 +39,13 @@ const router = express.Router();
         password2: req.body.password2
       });
     } else {
-      const newUser = new User({
+      User.findOne({email: req.body.email})
+      .then(user => {
+        if(user){
+          req.flash('error_msg', 'Email is already registered');
+          res.redirect('/users/register');
+        } else {
+             const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password
@@ -60,6 +66,9 @@ const router = express.Router();
             });
         });
       });
+        }
+      })
+   
     }
   });
 module.exports = router;
