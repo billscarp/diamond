@@ -21,6 +21,9 @@
     // require body-parser
     const bodyParser = require('body-parser');
 
+    // require passport
+   const passport = require('passport');
+
     // require mongoose
     const mongoose = require('mongoose');
 
@@ -33,6 +36,9 @@
     const users = require('./routes/users');
 
     app.use(express.static(path.join(__dirname, 'public')));  
+
+    // passport conifg
+    require('./config/passport')(passport);
 
     //////  MONGOOSE //////
 
