@@ -1,3 +1,14 @@
-{{!-- handlebars loop --}} {{!-- looping through to find errors will let user know if there are any --}} {{#each errors}}
+{{!-- Used for passport.  Checking fo error. --}}
+{{#if error}}
+<div class="alert alert-danger">{{error}}</div>
+{{/if}}
+
+
+
+{{!-- handlebars loop --}} {{!-- looping through to find errors will let user know if there are any --}}
+
+
+{{#each errors}}
 <div class="alert alert-danger">{{text}}</div>
-{{else}} {{/each}}
+{{else}} 
+{{/each}}
