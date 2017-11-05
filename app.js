@@ -34,6 +34,8 @@
     const projects = require('./routes/projects');
 
     const users = require('./routes/users');
+    // database config
+    const db = require('./config/database');
 
        // passport conifg
        require('./config/passport')(passport);
@@ -47,7 +49,7 @@
     // map global promise - remove warning / using promises rather than callbacks
     mongoose.Promise = global.Promise;
     // connect database to mongoose
-    mongoose.connect('mongodb://localhost/project-dev', {
+    mongoose.connect(db.mongoURI, {
             useMongoClient: true
         })
         //promise
@@ -140,7 +142,7 @@
     //////  SERVER ///////
 
     // server port to listen on
-    const port = 5000;
+    const port = process.env.PORT || 5000;
 
     // listen method, passing in port number 6000 with fat arrow function for callback
     app.listen(port, () => {
