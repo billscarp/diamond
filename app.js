@@ -93,6 +93,10 @@
         saveUninitialized: true
       }));
 
+      //// PASSPORT MIDDLEWARE /////
+      app.use(passport.initialize());
+      app.use(passport.session());
+
       ////  FLASH ////
       //calling flash
       app.use(flash());  
