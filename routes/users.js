@@ -21,7 +21,7 @@ const router = express.Router();
   // login form POST
   router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect:'/ideas',
+      successRedirect:'/projects',
       failureRedirect: '/users/login',
       failureFlash: true
     })(req, res, next);
