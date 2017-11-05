@@ -10,8 +10,9 @@ const {ensureAuthenticated} = require('../helpers/auth');
  const Project = mongoose.model('projects');
 
 // Project Index Page / taking ideas from database and passing into render
-router.get('/', (req, res) => {
-    Project.find({})
+router.get('/', ensureAuthenticated, (req, res) => {
+    // the user in the {} makes it so only you can see your projects
+    Project.find({user: req.user.id})
         // promise & sort
         .sort({
             date: 'desc'
@@ -30,22 +31,28 @@ router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('projects/add');
 });
 // edit project form
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     // this finds one item by id
     Project.findOne({
             _id: req.params.id
         })
         .then(project => {
-            res.render('projects/edit', {
-                project: project
-            });
+            if(project.user != req.user.id) {
+                req.flash('error_msg', 'Not Authorized');
+                res.redirect('/projects');
+            } else {
+                res.render('projects/edit', {
+                    project: project
+                });
+            }
+          
         });
 });
 
 
 // process the form
 
-router.post('/', (req, res) => {
+router.post('/', ensureAuthenticated, (req, res) => {
     // res.send('ok');
     // console.log(req.body)
     let errors = [];
@@ -69,7 +76,8 @@ router.post('/', (req, res) => {
     } else {
         const newUser = {
             title: req.body.title,
-            details: req.body.details
+            details: req.body.details,
+            user: req.user.id
         }
         new Project(newUser)
             .save()
@@ -81,7 +89,7 @@ router.post('/', (req, res) => {
 });
 
 // edit form process so changes can be made
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
     Project.findOne({
             _id: req.params.id
         })
@@ -99,7 +107,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete project
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
     Project.remove({_id: req.params.id})
       .then(() => {
           req.flash('success_msg', 'Project removed');
