@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-
+// destructuring 
+const {ensureAuthenticated} = require('../helpers/auth');
 
 
  // load Project model
@@ -24,7 +25,7 @@ router.get('/', (req, res) => {
 
 // project form routes / project add
 
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
     // rendering to about.handlebars
     res.render('projects/add');
 });
