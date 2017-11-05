@@ -34,11 +34,12 @@
     const projects = require('./routes/projects');
 
     const users = require('./routes/users');
-    // database config
-    const db = require('./config/database');
 
-       // passport conifg
+    // passport conifg
        require('./config/passport')(passport);
+
+        // database config
+    const db = require('./config/database');
 
     app.use(express.static(path.join(__dirname, 'public')));  
 
