@@ -1,2 +1,1 @@
 # diamond
-test
