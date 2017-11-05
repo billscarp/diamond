@@ -35,10 +35,12 @@
 
     const users = require('./routes/users');
 
+       // passport conifg
+       require('./config/passport')(passport);
+
     app.use(express.static(path.join(__dirname, 'public')));  
 
-    // passport conifg
-    require('./config/passport')(passport);
+ 
 
     //////  MONGOOSE //////
 
