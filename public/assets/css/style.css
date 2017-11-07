@@ -18,3 +18,17 @@ img:hover {
 p {
   margin: 40px 35px 
 }
+
+td {
+  color: green;
+}
+
+th {
+  font-weight: bold;
+  color: red;
+}
+
+nav a:hover { 
+  background-color: black;
+}
+
