@@ -1,2 +1,2 @@
 # diamond
-![alt text](/public/assets/readme.png "screenshot")
+![alt text](/public/assets/images/readme.png "screenshot")
