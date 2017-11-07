@@ -1,5 +1,5 @@
 {{!-- ///////////////// Nav Bar ////////////// --}}
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+<nav class="navbar navbar-expand-sm bg-success navbar-dark mb-3">
     <div class="container">
         <a class="navbar-brand" href="/">Unpolished Diamond</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -13,21 +13,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/about">Gallery</a>
                 </li>
-                {{!--
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="/auction  ">Auction</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li> --}}
+                    <a class="nav-link disabled" href="#">Collaborate</a>
+                </li> 
             </ul>
             {{!-- //// navbar to the right of the screen ///// --}}
 
             <ul class="navbar-nav ml-auto">
                 {{#if user}}
-            <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink"> Project Submissions</a>
 
                     {{!-- Links inside right dropdown --}}
@@ -37,21 +37,17 @@
                         <a href="/projects/add" class="dropdown-item">Add Project</a>
                     </div>
                 </li>
-                  <li class="nav-item">
-                <a href="/users/logout"
-                class="nav-link">Logout</a>
+                <li class="nav-item">
+                    <a href="/users/logout" class="nav-link">Logout</a>
                 </li>
             </ul>
             {{else}}
-              <li class="nav-item">
-                <a href="/users/login"
-                class="nav-link">Login</a>
-                </li>
-
-             <li class="nav-item">
-                <a href="/users/register"
-                class="nav-link">Register</a>
-                </li>
+            <li class="nav-item">
+                <a href="/users/login" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/users/register" class="nav-link">Register</a>
+            </li>
             {{/if}}
 
         </div>

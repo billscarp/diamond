@@ -22,7 +22,7 @@
     const bodyParser = require('body-parser');
 
     // require passport
-   const passport = require('passport');
+    const passport = require('passport');
 
     // require mongoose
     const mongoose = require('mongoose');
@@ -36,14 +36,14 @@
     const users = require('./routes/users');
 
     // passport conifg
-       require('./config/passport')(passport);
+    require('./config/passport')(passport);
 
-        // database config
+    // database config
     const db = require('./config/database');
 
-    app.use(express.static(path.join(__dirname, 'public')));  
+    app.use(express.static(path.join(__dirname, 'public')));
 
- 
+
 
     //////  MONGOOSE //////
 
@@ -57,7 +57,7 @@
         .then(() => console.log('MongoDB Connected...'))
         .catch(err => console.log(err));
 
-   
+
 
 
 
@@ -94,31 +94,31 @@
         secret: 'secret',
         resave: true,
         saveUninitialized: true
-      }));
+    }));
 
-      //// PASSPORT MIDDLEWARE /////
-      app.use(passport.initialize());
-      app.use(passport.session());
+    //// PASSPORT MIDDLEWARE /////
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-      ////  FLASH ////
-      //calling flash
-      app.use(flash());  
+    ////  FLASH ////
+    //calling flash
+    app.use(flash());
 
-   // global variables
-   app.use(function(req, res, next){
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    res.locals.user = req.user || null;
-    next();
-  });
+    // global variables
+    app.use(function (req, res, next) {
+        res.locals.success_msg = req.flash('success_msg');
+        res.locals.error_msg = req.flash('error_msg');
+        res.locals.error = req.flash('error');
+        res.locals.user = req.user || null;
+        next();
+    });
 
     //////  ROUTES   //////
 
     //index route  using request and response object callback function
     app.get('/', (req, res) => {
         // send is a method attatched to res
-        const title = 'Welcome to Unpolished Diamond!';
+        const title = 'Welcome to Unpolished Diamond';
         //object title passes to variable title goes to index.handlebars
         res.render('index', {
             title: title
@@ -132,14 +132,19 @@
         res.render('about');
     });
 
-    
-      /////// PASSPORT  ////////
+       // About Route
+       app.get('/auction', (req, res) => {
+        // rendering to about.handlebars
+        res.render('auction');
+    });
 
-      
+    /////// PASSPORT  ////////
 
-      // use routes uses projects.js users.js
-      app.use('/projects', projects);
-      app.use('/users', users);
+
+
+    // use routes uses projects.js users.js
+    app.use('/projects', projects);
+    app.use('/users', users);
     //////  SERVER ///////
 
     // server port to listen on
