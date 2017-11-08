@@ -1,38 +1,39 @@
 .blockquote {
-  font-size: 26px;
+    font-size: 26px;
 }
 
 img {
-  width: 200px;
-  height: 100px;
-  margin:60px 25px 15px 20px; 
- opacity: 0.5;
-  filter: alpha(opacity=50); /* For IE8 and earlier */
+    width: 200px;
+    height: 100px;
+    margin: 60px 25px 15px 20px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    /* For IE8 and earlier */
 }
-
 img:hover {
     opacity: 1.0;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
+    filter: alpha(opacity=100);
+    /* For IE8 and earlier */
 }
 
 p {
-  margin: 40px 35px 
+    margin: 40px 35px
 }
 
 td {
-  color: green;
+    color: green;
 }
 
 th {
-  font-weight: bold;
-  color: red;
+    font-weight: bold;
+    color: red;
 }
 
-nav a:hover { 
-  background-color: black;
+nav a:hover {
+    background-color: black;
 }
 
 iframe {
-  display: block; 
-  margin: 0 auto; 
+    display: block;
+    margin: 0 auto;
 }
