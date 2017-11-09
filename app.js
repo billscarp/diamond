@@ -132,11 +132,17 @@
         res.render('about');
     });
 
-       // About Route
+       // Auction Route
        app.get('/auction', (req, res) => {
         // rendering to about.handlebars
         res.render('auction');
     });
+
+        // Partner Route
+        app.get('/partners', (req, res) => {
+            // rendering to about.handlebars
+            res.render('partners');
+        });
 
     /////// PASSPORT  ////////
 
